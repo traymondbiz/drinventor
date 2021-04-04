@@ -70,13 +70,12 @@ public class Facade {
         return document;
     }
 
-    public Document loadLocalPlainText(String textToParse,
-                                       String documentName,
+    public Document loadLocalPlainText(String plainTextFilePath,
                                        String propertyFilePath,
                                        ModuleConfig moduleConfig) throws DRIexception {
         setUpFactory(propertyFilePath, moduleConfig);
         Document document = Factory.getPlainTextLoader()
-                .parseString(textToParse, documentName);
+                .parsePlainText(plainTextFilePath);
         document.preprocess();
         return document;
     }
@@ -103,4 +102,13 @@ public class Facade {
         return document;
     }
 
+    public Document loadRemotePlainText(URL URLSource,
+                                        String propertyFilePath,
+                                        ModuleConfig moduleConfig) throws DRIexception {
+        setUpFactory(propertyFilePath, moduleConfig);
+        Document document = Factory.getPlainTextLoader()
+                .parsePlainText(URLSource);
+        document.preprocess();
+        return document;
+    }
 }
