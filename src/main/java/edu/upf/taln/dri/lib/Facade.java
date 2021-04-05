@@ -70,16 +70,6 @@ public class Facade {
         return document;
     }
 
-    public Document loadLocalPlainText(String plainTextFilePath,
-                                       String propertyFilePath,
-                                       ModuleConfig moduleConfig) throws DRIexception {
-        setUpFactory(propertyFilePath, moduleConfig);
-        Document document = Factory.getPlainTextLoader()
-                .parsePlainText(plainTextFilePath);
-        document.preprocess();
-        return document;
-    }
-
     public Document loadRemotePDFUsingGrobid(String propertyFilePath,
                                              ModuleConfig moduleConfig,
                                              URL URLSource) throws DRIexception {
@@ -102,6 +92,16 @@ public class Facade {
         return document;
     }
 
+    public Document loadLocalPlainText(String plainTextFilePath,
+                                       String propertyFilePath,
+                                       ModuleConfig moduleConfig) throws DRIexception {
+        setUpFactory(propertyFilePath, moduleConfig);
+        Document document = Factory.getPlainTextLoader()
+            .parsePlainText(plainTextFilePath);
+        document.preprocess();
+        return document;
+    }
+    
     public Document loadRemotePlainText(URL URLSource,
                                         String propertyFilePath,
                                         ModuleConfig moduleConfig) throws DRIexception {
